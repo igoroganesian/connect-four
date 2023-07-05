@@ -163,5 +163,5 @@ function checkForWin() {
   }
 }
 
-// makeBoard();
-// makeHtmlBoard();
+ makeBoard();
+ makeHtmlBoard();
