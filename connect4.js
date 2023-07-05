@@ -39,12 +39,12 @@ function createRow() {
 function makeHtmlBoard() {
   const htmlBoard = document.getElementById('board');
 
-  // TODO: add comment for this code
+  // create the top row, set the id and add interactivity
   const top = document.createElement("tr");
   top.setAttribute("id", "column-top");
   top.addEventListener("click", handleClick);
 
-  // TODO: add comment for this code
+  // populate the top row with boxes and ids them with column numbers
   for (let x = 0; x < BOARD_WIDTH; x++) {
     const headCell = document.createElement("td");
     headCell.setAttribute("id", `top-${x}`);
@@ -56,18 +56,23 @@ function makeHtmlBoard() {
   // uses HEIGHT to create table rows
   // uses WIDTH to create table cells for each row
   for (let y = 0; y < BOARD_HEIGHT; y++) {
-    // TODO: Create a table row element and assign to a "row" variable
+    let row = document.createElement("tr");
 
     for (let x = 0; x < BOARD_WIDTH; x++) {
       // TODO: Create a table cell element and assign to a "cell" variable
+      let cell = document.createElement("td");
 
       // TODO: add an id, c-y-x, to the above table cell element
+      //TODO: figure out what c is referring to
+      cell.setAttribute("id",`c-${y}-${x}`);
       // you'll use this later, so make sure you use c-y-x
 
       // TODO: append the table cell to the table row
+      row.append(cell);
 
     }
     // TODO: append the row to the html board
+    htmlBoard.append(row);
 
   }
 }
