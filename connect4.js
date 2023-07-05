@@ -21,7 +21,7 @@ function makeBoard() {
   // TODO: set "board" to empty HEIGHT x WIDTH matrix array
   //height = # of rows
   //width = # of nulls per row
-  for (let i = HEIGHT; i > 0; i--) {
+  for (let i = HEIGHT; i > 0; i--) {//change to y
     console.log(i);
     board.push(createRow());
   }
@@ -64,7 +64,7 @@ function makeHtmlBoard() {
 
       // TODO: add an id, c-y-x, to the above table cell element
       //TODO: figure out what c is referring to
-      cell.setAttribute("id",`c-${y}-${x}`);
+      cell.setAttribute("id", `c-${y}-${x}`);
       // you'll use this later, so make sure you use c-y-x
 
       // TODO: append the table cell to the table row
@@ -163,5 +163,5 @@ function checkForWin() {
   }
 }
 
- makeBoard();
- makeHtmlBoard();
+makeBoard();
+makeHtmlBoard();
