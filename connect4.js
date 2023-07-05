@@ -1,7 +1,7 @@
 "use strict";
 
-const BOARD_WIDTH = 7;
-const BOARD_HEIGHT = 6;
+const WIDTH = 7;
+const HEIGHT = 6;
 
 /** Connect Four
  *
@@ -10,8 +10,8 @@ const BOARD_HEIGHT = 6;
  * board fills (tie)
  */
 
-const currPlayer = 1; // active player: 1 or 2
-const board = []; // array of rows, each row is array of cells  (board[y][x])
+let currPlayer = 1; // active player: 1 or 2
+let board = []; // array of rows, each row is array of cells  (board[y][x])
 
 /** makeBoard: create in-JS board structure:
  *    board = array of rows, each row is array of cells  (board[y][x])
@@ -21,7 +21,7 @@ function makeBoard() {
   // TODO: set "board" to empty HEIGHT x WIDTH matrix array
   //height = # of rows
   //width = # of nulls per row
-  for (let i = BOARD_HEIGHT; i > 0; i--) {
+  for (let i = HEIGHT; i > 0; i--) {
     console.log(i);
     board.push(createRow());
   }
@@ -30,8 +30,8 @@ function makeBoard() {
 /** Generates new row array of BOARD_WIDTH nulls */
 
 function createRow() {
-  const newRow = new Array(BOARD_WIDTH);
-  return newRow.fill(null, 0, BOARD_WIDTH);
+  const newRow = new Array(WIDTH);
+  return newRow.fill(null, 0, WIDTH);
 }
 
 /** makeHtmlBoard: make HTML table and row of column tops. */
@@ -45,7 +45,7 @@ function makeHtmlBoard() {
   top.addEventListener("click", handleClick);
 
   // populate the top row with boxes and ids them with column numbers
-  for (let x = 0; x < BOARD_WIDTH; x++) {
+  for (let x = 0; x < WIDTH; x++) {
     const headCell = document.createElement("td");
     headCell.setAttribute("id", `top-${x}`);
     top.append(headCell);
@@ -55,10 +55,10 @@ function makeHtmlBoard() {
   // dynamically creates the main part of html board
   // uses HEIGHT to create table rows
   // uses WIDTH to create table cells for each row
-  for (let y = 0; y < BOARD_HEIGHT; y++) {
+  for (let y = 0; y < HEIGHT; y++) {
     let row = document.createElement("tr");
 
-    for (let x = 0; x < BOARD_WIDTH; x++) {
+    for (let x = 0; x < WIDTH; x++) {
       // TODO: Create a table cell element and assign to a "cell" variable
       let cell = document.createElement("td");
 
@@ -143,8 +143,8 @@ function checkForWin() {
   // using HEIGHT and WIDTH, generate "check list" of coordinates
   // for 4 cells (starting here) for each of the different
   // ways to win: horizontal, vertical, diagonalDR, diagonalDL
-  for (let y = 0; y < BOARD_HEIGHT; y++) {
-    for (let x = 0; x < BOARD_WIDTH; x++) {
+  for (let y = 0; y < HEIGHT; y++) {
+    for (let x = 0; x < WIDTH; x++) {
       // TODO: assign values to the below variables for each of the ways to win
       // horizontal has been assigned for you
       // each should be an array of 4 cell coordinates:
