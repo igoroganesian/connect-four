@@ -88,6 +88,13 @@ function findSpotForCol(x) {
 
 function placeInTable(y, x) {
   // TODO: make a div and insert into correct table cell
+  console.log('placeInTable called', 'y: ', y,'x: ', x);
+  const cell = document.getElementById(`c-${y}-${x}`);
+  const piece = document.createElement('div');
+  piece.classList.add('piece', 'playerOne');
+  cell.append(piece);
+  //div includes piece class, and p1/p2 class
+  //CSS: make piece div round, match color to player
 }
 
 /** endGame: announce game end */
