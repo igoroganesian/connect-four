@@ -10,8 +10,8 @@ const HEIGHT = 6;
  * board fills (tie)
  */
 
-const currPlayer = 1; // active player: 1 or 2
-const board = []; // array of rows, each row is array of cells  (board[y][x])
+let currPlayer = 1; // active player: 1 or 2
+let board = []; // array of rows, each row is array of cells  (board[y][x])
 
 /** makeBoard: create in-JS board structure:
  *    board = array of rows, each row is array of cells  (board[y][x])
@@ -21,7 +21,7 @@ function makeBoard() {
   // TODO: set "board" to empty HEIGHT x WIDTH matrix array
   //height = # of rows
   //width = # of nulls per row
-  for (let i = HEIGHT; i > 0; i--) {
+  for (let i = HEIGHT; i > 0; i--) {//change to y
     console.log(i);
     board.push(createRow());
   }
@@ -64,7 +64,7 @@ function makeHtmlBoard() {
 
       // TODO: add an id, c-y-x, to the above table cell element
       //TODO: figure out what c is referring to
-      cell.setAttribute("id",`c-${y}-${x}`);
+      cell.setAttribute("id", `c-${y}-${x}`);
       // you'll use this later, so make sure you use c-y-x
 
       // TODO: append the table cell to the table row
@@ -163,5 +163,5 @@ function checkForWin() {
   }
 }
 
- makeBoard();
- makeHtmlBoard();
+makeBoard();
+makeHtmlBoard();
