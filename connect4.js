@@ -18,9 +18,6 @@ let board = []; // array of rows, each row is array of cells  (board[y][x])
  */
 
 function makeBoard() {
-  // TODO: set "board" to empty HEIGHT x WIDTH matrix array
-  //height = # of rows
-  //width = # of nulls per row
   for (let i = HEIGHT; i > 0; i--) {//change to y
     console.log(i);
     board.push(createRow());
@@ -59,19 +56,12 @@ function makeHtmlBoard() {
     let row = document.createElement("tr");
 
     for (let x = 0; x < WIDTH; x++) {
-      // TODO: Create a table cell element and assign to a "cell" variable
       let cell = document.createElement("td");
-
-      // TODO: add an id, c-y-x, to the above table cell element
-      //TODO: figure out what c is referring to
       cell.setAttribute("id", `c-${y}-${x}`);
-      // you'll use this later, so make sure you use c-y-x
 
-      // TODO: append the table cell to the table row
       row.append(cell);
 
     }
-    // TODO: append the row to the html board
     htmlBoard.append(row);
 
   }
@@ -80,8 +70,14 @@ function makeHtmlBoard() {
 /** findSpotForCol: given column x, return bottom empty y (null if filled) */
 
 function findSpotForCol(x) {
-  // TODO: write the real version of this, rather than always returning 5
-  return 5;
+  for (let y = HEIGHT -1;y>=0;y--){
+    const cell = document.getElementById(`c-${y}-${x}`);
+    console.log(`cell is ${cell}`);
+    if (!cell.hasChildNodes()) {
+      return cell;
+    }
+  }
+  return null;
 }
 
 /** placeInTable: update DOM to place piece into HTML table of board */
