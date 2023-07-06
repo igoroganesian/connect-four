@@ -24,7 +24,7 @@ function makeBoard() {
   }
 }
 
-/** Generates new row array of BOARD_WIDTH nulls */
+/** Generates and returns new row array of BOARD_WIDTH nulls */
 
 function createRow() {
   const newRow = new Array(WIDTH);
@@ -71,10 +71,10 @@ function makeHtmlBoard() {
 
 function findSpotForCol(x) {
   for (let y = HEIGHT - 1; y >= 0; y--) {
-    const cell = document.getElementById(`c-${y}-${x}`);
+    let cell = board[y][x];
     console.log(`cell is ${cell}`);
-    if (!cell.hasChildNodes()) {
-      return cell;
+    if (!cell) {
+      return y;
     }
   }
   return null;
@@ -86,29 +86,25 @@ function placeInTable(y, x) {
   // TODO: make a div and insert into correct table cell
   console.log('placeInTable called', 'y: ', y, 'x: ', x);
   const cell = document.getElementById(`c-${y}-${x}`);
+  console.log(cell);
   const piece = document.createElement('div');
-  piece.classList.add('piece', 'playerOne');
+  piece.classList.add('piece', `player${currPlayer}`);
   cell.append(piece);
-  //div includes piece class, and p1/p2 class
-  //CSS: make piece div round, match color to player
-}
-
-/** endGame: announce game end */
-
-function endGame(msg) {
-  // TODO: pop up alert message
 }
 
 /** Takes an element id formatted as c-y-x and returns the x,y coords as
-    an array [y,x] */
+    an object {y: _, x: _} */
 
 function parseId(id) {
   let splitId = id.split("-");
+
   return {
-    y:splitId[1],
-    x:splitId[2]
+    y: Number(splitId[1]),
+    x: Number(splitId[2])
   }
 }
+
+
 
 /** handleClick: handle click of column top to play piece */
 
@@ -138,7 +134,12 @@ function handleClick(evt) {
 
   // switch players
   // TODO: switch currPlayer 1 <-> 2
+  currPlayer === 1 ? currPlayer = 2 : currPlayer = 1;
 }
+
+
+
+
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
 
@@ -177,6 +178,12 @@ function checkForWin() {
       }
     }
   }
+}
+
+/** endGame: announce game end */
+
+function endGame(msg) {
+  // TODO: pop up alert message
 }
 
 makeBoard();
