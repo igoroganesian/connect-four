@@ -96,7 +96,9 @@ function placeInTable(y, x) {
     an object {y: _, x: _} */
 
 function parseId(id) {
-  let splitId = id.split("-");
+  console.log(typeof id);
+  let splitId = id.split('-');
+  console.log(splitId);
 
   return {
     y: Number(splitId[1]),
@@ -110,18 +112,26 @@ function parseId(id) {
 
 function handleClick(evt) {
   // get x from ID of clicked cell
-  const x = Number(parseId(evt.target.id)).x;
+  // const x = Number(parseId(evt.target.id)).x;
+  const target = evt.target.id;
+  const x = Number(target[target.length - 1]);
   //parse for x value
-
+  console.log('x: ', x);
 
   // get next spot in column (if none, ignore click)
-  const y = parseId(findSpotForCol(x).id).y;
+
+  //TODO: fix it
+  const y = findSpotForCol(x);
   if (y === null) {
     return;
   }
 
   // place piece in board and add to HTML table
   // TODO: add line to update in-memory board
+
+  board[y][x] = currPlayer;
+  // console.log(board[y][x]);
+
   placeInTable(y, x);
 
   // check for win
