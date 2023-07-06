@@ -70,7 +70,7 @@ function makeHtmlBoard() {
 /** findSpotForCol: given column x, return bottom empty y (null if filled) */
 
 function findSpotForCol(x) {
-  for (let y = HEIGHT -1;y>=0;y--){
+  for (let y = HEIGHT - 1; y >= 0; y--) {
     const cell = document.getElementById(`c-${y}-${x}`);
     console.log(`cell is ${cell}`);
     if (!cell.hasChildNodes()) {
@@ -84,7 +84,7 @@ function findSpotForCol(x) {
 
 function placeInTable(y, x) {
   // TODO: make a div and insert into correct table cell
-  console.log('placeInTable called', 'y: ', y,'x: ', x);
+  console.log('placeInTable called', 'y: ', y, 'x: ', x);
   const cell = document.getElementById(`c-${y}-${x}`);
   const piece = document.createElement('div');
   piece.classList.add('piece', 'playerOne');
@@ -99,14 +99,27 @@ function endGame(msg) {
   // TODO: pop up alert message
 }
 
+/** Takes an element id formatted as c-y-x and returns the x,y coords as
+    an array [y,x] */
+
+function parseId(id) {
+  let splitId = id.split("-");
+  return {
+    y:splitId[1],
+    x:splitId[2]
+  }
+}
+
 /** handleClick: handle click of column top to play piece */
 
 function handleClick(evt) {
   // get x from ID of clicked cell
-  const x = +evt.target.id;
+  const x = Number(parseId(evt.target.id)).x;
+  //parse for x value
+
 
   // get next spot in column (if none, ignore click)
-  const y = findSpotForCol(x);
+  const y = parseId(findSpotForCol(x).id).y;
   if (y === null) {
     return;
   }
